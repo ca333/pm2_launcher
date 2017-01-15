@@ -3,11 +3,12 @@ const electron = require('electron')
 const app = electron.app
 
 const BrowserWindow = electron.BrowserWindow
-const fixPath = require('fix-path');
+//const fixPath = require('fix-path');
 const pm2 = require('pm2');
 const path = require('path')
 const url = require('url')
-const execFile = require('child_process').execFile;
+const exec = require('child_process').exec;
+
 fs = require('fs');
 
 let mainWindow
@@ -49,12 +50,25 @@ app.on('window-all-closed', function () {
 })
 
 function launchPM2() {
+
+  var fpath = path.join(__dirname, '/node_modules/pm2/bin/pm2 list');
+  exec(fpath, (error, stdout, stderr) => {
+  if (error) {
+    console.error(`exec error: ${error}`);
+    return;
+  }
+  console.log(`stdout: ${stdout}`);
+  console.log(`stderr: ${stderr}`);
+});
+
+  /*
   pm2.connect(function(err) { //start up pm2 god
     if (err) {
       console.log(err);
       process.exit(2);
     }
   });
+  */
   console.log("pm2 launched...");
   //process.exit(2);
 }

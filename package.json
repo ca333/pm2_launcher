@@ -17,6 +17,7 @@
   "dependencies": {
     "bluebird": "^3.4.7",
     "fix-path": "^2.1.0",
+    "electron": "^1.4.1",
     "pm2": "^2.0.0"
   },
   "devDependencies": {
